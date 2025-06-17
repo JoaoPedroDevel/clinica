@@ -17,16 +17,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
        
         $_SESSION['logado'] = true; 
         $_SESSION['usuario_id'] = $usuario['id'];
-        $_SESSION['usuario_nome'] = $usuario['nome'] ?? $usuario['email']; 
+        $_SESSION['usuario_nome'] = $usuario['nome_completo'] ?? $usuario['email']; // Usar nome_completo
         $_SESSION['usuario_email'] = $usuario['email'];
         $_SESSION['is_admin'] = !empty($usuario['is_admin']) && $usuario['is_admin'] == 1;
 
        
         if ($_SESSION['is_admin']) {
-            header("Location: ../painel.php");
+            header("Location: ../painel.php"); // Painel de admin para admins
             exit; 
         } else {
-            header("Location: ../painel.php");
+            header("Location: ../painel_usuario.php"); // Painel de usuário para não-admins
             exit;
         }
     } else {
